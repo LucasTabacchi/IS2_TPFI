@@ -1,7 +1,8 @@
 {
+  "UUID": "e4a8dfcd907d",
   "ACTION": "set",
+  "ID": "UADER-FCyT-IS1",
   "DATA": {
-    "id": "UADER-FCyT-IS1",
-    "cp": "3260"
+    "web": "uaderfcyt@edu.com.ar"
   }
 }

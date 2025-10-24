@@ -1,0 +1,297 @@
+{
+  "OK": true,
+  "DATA": [
+    {
+      "nombre": "Prueba",
+      "id": "TEST-01",
+      "descripcion": "Registro de prueba"
+    },
+    {
+      "UUID": "190090210885304",
+      "localidad": "Test-Localidad",
+      "id": "test-id-f45067a0-eceb-4a96-9c06-8a375a009de8",
+      "provincia": "Test-Provincia",
+      "ACTION": "set"
+    },
+    {
+      "id": "UADER-FCYT-IS2",
+      "telefono": "03442 33-0044",
+      "web": "http://www.fcyt.uader.edu.ar/nuevo"
+    },
+    {
+      "UUID": "190090210885304",
+      "localidad": "Test-Localidad",
+      "id": "test-id-1a98b91a-83c7-4120-91d9-022cea69447d",
+      "provincia": "Test-Provincia",
+      "ACTION": "set"
+    },
+    {
+      "UUID": "190090210885304",
+      "localidad": "Test-Localidad",
+      "id": "test-id-6b5c2059-9fb3-4574-a535-060fbfad52dd",
+      "provincia": "Test-Provincia",
+      "ACTION": "set"
+    },
+    {
+      "id": "DEMO-ITEM-001",
+      "telefono": "011-NUEVO-5678",
+      "cp": "5678"
+    },
+    {
+      "id": "ITEM-DEMO-001",
+      "telefono": "011-1234-5678"
+    },
+    {
+      "UUID": "190090210885304",
+      "localidad": "Test-Localidad",
+      "id": "test-id-938942f7-f0de-46a3-9097-5e34e02beecb",
+      "provincia": "Test-Provincia",
+      "ACTION": "set"
+    },
+    {
+      "UUID": "190090210885304",
+      "localidad": "Test-Localidad",
+      "id": "test-id-3d3b9b3f-73ec-483c-beb8-feb0ca399f1c",
+      "provincia": "Test-Provincia",
+      "ACTION": "set"
+    },
+    {
+      "CUIT": "30-70925411-8",
+      "localidad": "Concepcion del Uruguay",
+      "provincia": "Entre Rios",
+      "sede": "FCyT-Central",
+      "idreq": 9999,
+      "UUID": "66504331602159",
+      "domicilio": "Calle Falsa 123 - MODIFICADO",
+      "id": "Prueba2",
+      "cp": "3260",
+      "ACTION": "set"
+    },
+    {
+      "seqID": "",
+      "web": "",
+      "CUIT": "",
+      "localidad": "",
+      "provincia": "Entre Rios",
+      "sede": "",
+      "idSeq": "",
+      "idreq": "",
+      "telefono": "",
+      "domicilio": "25 de Mayo 385",
+      "id": "test-001",
+      "cp": ""
+    },
+    {
+      "CUIT": "30-70925411-8",
+      "localidad": "Concepcion del Uruguay",
+      "provincia": "Entre Rios",
+      "sede": "FCyT-Central",
+      "idreq": 9999,
+      "UUID": "94977355534974",
+      "domicilio": "Calle Falsa 123 - MODIFICADO",
+      "id": "Prueba123",
+      "cp": "3260",
+      "ACTION": "set"
+    },
+    {
+      "telefono": "03442 43-5023",
+      "idreq": 474,
+      "domicilio": "Av.Miguel Britto",
+      "localidad": "Herrera",
+      "id": "UADER-FCyT-IS2-V2",
+      "provincia": "Entre Rios"
+    },
+    {
+      "telefono": "1111-2222",
+      "domicilio": "Calle Test 123",
+      "id": "test-get-001",
+      "provincia": "Testlandia"
+    },
+    {
+      "seqID": "",
+      "web": "",
+      "CUIT": "",
+      "localidad": "",
+      "provincia": "Entre Rios",
+      "sede": "",
+      "idSeq": "",
+      "idreq": "",
+      "telefono": "03442 431-456",
+      "domicilio": "25 de Mayo 385-1P",
+      "id": "demo-partial",
+      "cp": ""
+    },
+    {
+      "id": "X1",
+      "name": "UADER"
+    },
+    {
+      "telefono": "011-1234-5678",
+      "CUIT": "30-12345678-9",
+      "id": "test-set-item",
+      "cp": "1234"
+    },
+    {
+      "seqID": "",
+      "web": "",
+      "CUIT": "",
+      "localidad": "",
+      "provincia": "",
+      "sede": "",
+      "idSeq": "",
+      "idreq": "",
+      "telefono": "",
+      "domicilio": "Address A",
+      "id": "demo-A",
+      "cp": ""
+    },
+    {
+      "UUID": "190090210885304",
+      "localidad": "Test-Localidad",
+      "id": "test-id-cbdf51df-3528-4d9e-aa61-765b14846618",
+      "provincia": "Test-Provincia",
+      "ACTION": "set"
+    },
+    {
+      "UUID": "190090210885304",
+      "localidad": "Test-Localidad",
+      "id": "test-id-f2088c7f-0ae3-49af-aa2b-74972c833c76",
+      "provincia": "Test-Provincia",
+      "ACTION": "set"
+    },
+    {
+      "id": "UADER-FCyT-IS1",
+      "localidad": "Concepción del Uruguay",
+      "cp": "3260",
+      "provincia": "Entre Ríos",
+      "direccion": "25 de Mayo 385"
+    },
+    {
+      "id": "UADER-FCyT-IS2"
+    },
+    {
+      "id": "fiuma",
+      "telefono": "84843939",
+      "domicilio": "Cordoba"
+    },
+    {
+      "id": "ITEM-DEMO-002",
+      "cp": "1000",
+      "CUIT": "30-12345678-9"
+    },
+    {
+      "CUIT": "30-70925411-8",
+      "localidad": "Concepcion del Uruguay",
+      "provincia": "Entre Rios",
+      "sede": "FCyT-Central",
+      "idreq": 9999,
+      "UUID": "345052807176",
+      "domicilio": "Calle Falsa 123 - MODIFICADO",
+      "id": "Prueba grupo",
+      "cp": "3260",
+      "ACTION": "set"
+    },
+    {
+      "id": "test-proxy-item",
+      "cp": "1234",
+      "CUIT": "30-12345678-9"
+    },
+    {
+      "seqID": "",
+      "web": "",
+      "CUIT": "",
+      "localidad": "",
+      "provincia": "",
+      "sede": "",
+      "idSeq": "",
+      "idreq": "",
+      "telefono": "",
+      "domicilio": "Test",
+      "id": "corp-001",
+      "cp": ""
+    },
+    {
+      "seqID": "",
+      "web": "www.test.com",
+      "CUIT": "",
+      "localidad": "",
+      "provincia": "",
+      "sede": "",
+      "idSeq": "",
+      "idreq": "",
+      "telefono": "",
+      "domicilio": "",
+      "id": "demo-C",
+      "cp": ""
+    },
+    {
+      "CUIT": "30-70925411-8",
+      "localidad": "Concepcion del Uruguay",
+      "provincia": "Entre Rios",
+      "sede": "FCyT-Central",
+      "idreq": 9999,
+      "UUID": "94977355534974",
+      "domicilio": "Calle Falsa 123 - MODIFICADO",
+      "id": "Prueba",
+      "cp": "3260",
+      "ACTION": "set"
+    },
+    {
+      "seqID": "",
+      "web": "www.test.com",
+      "CUIT": "",
+      "localidad": "",
+      "provincia": "",
+      "sede": "",
+      "idSeq": "",
+      "idreq": "",
+      "telefono": "03442 431-456",
+      "domicilio": "",
+      "id": "test-002",
+      "cp": ""
+    },
+    {
+      "CUIT": "30-70925411-8",
+      "domicilio": "25 de Mayo 385",
+      "localidad": "Concepción del Uruguay",
+      "id": "test-get-item",
+      "cp": "3260"
+    },
+    {
+      "id": "observer-test-item",
+      "cp": "5678"
+    },
+    {
+      "UUID": "190090210885304",
+      "localidad": "Test-Localidad",
+      "id": "test-id-dea40291-988e-4cbd-903b-1cefb7a2c2fa",
+      "provincia": "Test-Provincia",
+      "ACTION": "set"
+    },
+    {
+      "CUIT": "30-11111111-1",
+      "domicilio": "Test Address 999",
+      "id": "TEST-DEMO-999",
+      "cp": "9999"
+    },
+    {
+      "seqID": "",
+      "web": "",
+      "CUIT": "",
+      "localidad": "",
+      "provincia": "",
+      "sede": "",
+      "idSeq": "",
+      "idreq": "",
+      "telefono": "123-456",
+      "domicilio": "",
+      "id": "demo-B",
+      "cp": ""
+    },
+    {
+      "id": "UADER-FCyT-IS2----prueba---",
+      "telefono": "3222222",
+      "domicilio": "8 de junio 19191919"
+    }
+  ]
+}
