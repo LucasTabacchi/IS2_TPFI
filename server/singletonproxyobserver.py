@@ -4,7 +4,6 @@ from common.net import send_json, recv_json
 from storage.adapter import CorporateData, CorporateLog
 from server.observer import ObserverRegistry
 
-
 UUID_HEX_RE = re.compile(r"^[0-9a-f]{12}$")
 
 
@@ -23,9 +22,7 @@ def _require_action(req):
 
 
 def _extract_id(req):
-    """
-    Devuelve el ID desde el nivel superior (ID) o, si no está, desde DATA.id/ID.
-    """
+    """ Devuelve el ID desde el nivel superior (ID) o, si no está, desde DATA.id/ID. """
     if "ID" in req and str(req["ID"]).strip():
         return str(req["ID"]).strip()
     data = req.get("DATA")
@@ -46,7 +43,6 @@ def handle_client(conn, addr, log, data_db, log_db, observers):
 
         log.debug(f"RAW request from {addr}: {req}")
 
-        # Validaciones base
         uuid_cli = _require_uuid(req)
         action = _require_action(req)
         session = str(uuid.uuid4())
@@ -55,27 +51,24 @@ def handle_client(conn, addr, log, data_db, log_db, observers):
         log.debug(f"ACTION='{action}' UUID='{uuid_cli}' session='{session}'")
 
         if action == "subscribe":
-            # Registrar suscripción
             observers.add(uuid_cli, conn)
             log_db.append({"UUID": uuid_cli, "session": session, "action": "subscribe", "ts": now})
             send_json(conn, {"OK": True, "ACTION": "subscribe"})
+            log.info(f"Cliente {uuid_cli} suscripto desde {addr}")
 
-            # Mantener viva la conexión (hasta que el cliente cierre)
+            # Mantener viva la conexión hasta cierre remoto
             try:
                 while True:
-                    # Un pequeño ping pasivo; si la conexión cae, write fallará en broadcast
                     time.sleep(3600)
-            finally:
-                # La conexión se cierra en finally externo si no es subscribe;
-                # para subscribe dejamos que el cierre lo haga el peer.
-                return
+            except Exception:
+                pass
+            return
 
         elif action == "get":
             id_ = _extract_id(req)
             if not id_:
                 send_json(conn, {"OK": False, "Error": "Missing 'ID' for ACTION 'get'."})
                 return
-
             log_db.append({"UUID": uuid_cli, "session": session, "action": "get", "id": id_, "ts": now})
             item = data_db.get(id_)
             if item:
@@ -85,15 +78,12 @@ def handle_client(conn, addr, log, data_db, log_db, observers):
             return
 
         elif action == "list":
-            # Registrar y listar todo
             log_db.append({"UUID": uuid_cli, "session": session, "action": "list", "ts": now})
             items = data_db.list_all()
             send_json(conn, {"OK": True, "DATA": items})
             return
 
         elif action == "set":
-            # Aceptar formato: ID arriba + DATA{...} (recomendado)
-            # Compatibilidad: si ID viene adentro de DATA, también sirve.
             if not isinstance(req.get("DATA"), dict):
                 send_json(conn, {"OK": False, "Error": "DATA must be an object with fields to update."})
                 return
@@ -103,19 +93,14 @@ def handle_client(conn, addr, log, data_db, log_db, observers):
                 send_json(conn, {"OK": False, "Error": "Missing 'ID' for ACTION 'set'."})
                 return
 
-            # Armar payload que espera CorporateData.upsert(payload) con 'id' en lowercase
-            payload = dict(req["DATA"])  # copia
-            payload["id"] = id_          # asegurar presencia de 'id'
-            # (si venía 'ID' en DATA, opcionalmente lo removemos para consistencia)
+            payload = dict(req["DATA"])
+            payload["id"] = id_
             payload.pop("ID", None)
 
             log_db.append({"UUID": uuid_cli, "session": session, "action": "set", "id": id_, "ts": now})
-
             saved = data_db.upsert(payload)
-            resp = {"OK": True, "DATA": saved}
-            send_json(conn, resp)
+            send_json(conn, {"OK": True, "DATA": saved})
 
-            # Notificar a subscriptores
             try:
                 observers.broadcast({"ACTION": "change", "DATA": saved}, send_json)
             except Exception as be:
@@ -123,28 +108,22 @@ def handle_client(conn, addr, log, data_db, log_db, observers):
             return
 
         else:
-            # (No debería llegar acá por la validación previa)
             send_json(conn, {"OK": False, "Error": f"Unknown ACTION '{req.get('ACTION')}'"})
             return
 
     except ValueError as ve:
-        # Errores de validación “limpios”
         try:
             send_json(conn, {"OK": False, "Error": str(ve)})
         except Exception:
             pass
-        return
     except Exception as e:
-        # Errores inesperados
         log.error(f"Error handling client {addr}: {e}")
         try:
             send_json(conn, {"OK": False, "Error": f"{type(e).__name__}: {e}"})
         except Exception:
             pass
-        return
     finally:
         try:
-            # Para 'subscribe' dejamos la conexión viva (return anticipado arriba).
             if not (req and str(req.get("ACTION", "")).strip().lower() == "subscribe"):
                 conn.close()
         except Exception:
@@ -158,35 +137,46 @@ def main():
     args = ap.parse_args()
     log = setup(args.verbose)
 
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    s.bind(("", args.port))
-    s.listen(128)
-    log.info(f"Server listening on *:{args.port}")
-
     data_db = CorporateData()
     log_db = CorporateLog()
     observers = ObserverRegistry()
 
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server.bind(("", args.port))
+    server.listen(128)
+    server.settimeout(1.0)  # ⏱ evita bloqueo indefinido en accept()
+    # log.info(f"Servidor escuchando en *:{args.port}")
+    # log.info("Presione Ctrl+C para detenerlo de forma segura.")
+
     try:
         while True:
-            conn, addr = s.accept()
+            try:
+                conn, addr = server.accept()
+            except socket.timeout:
+                continue  # permite chequear KeyboardInterrupt
+            except OSError:
+                break
+
             t = threading.Thread(
                 target=handle_client,
                 args=(conn, addr, log, data_db, log_db, observers),
                 daemon=True,
             )
             t.start()
+
     except KeyboardInterrupt:
-        log.info("Shutting down by Ctrl+C...")
+        log.info("Cancelación manual detectada (Ctrl+C). Cerrando servidor...")
+
     finally:
         try:
-            s.close()
-        except Exception:
-            pass
+            server.close()
+            observers.close_all()  # 🔒 asegúrate de tener método para cerrar subscriptores
+        except Exception as e:
+            log.warning(f"Error al cerrar servidor: {e}")
+        log.info("Servidor detenido correctamente.")
         sys.exit(0)
 
 
 if __name__ == "__main__":
     main()
-

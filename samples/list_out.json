@@ -153,6 +153,13 @@
       "ACTION": "set"
     },
     {
+      "sequence_id": "9999",
+      "cuit": "00-00000000-0",
+      "address": "Prueba 123",
+      "id": "TEST-CONN",
+      "phone": "123456789"
+    },
+    {
       "UUID": "190090210885304",
       "localidad": "Test-Localidad",
       "id": "test-id-f2088c7f-0ae3-49af-aa2b-74972c833c76",
@@ -160,6 +167,7 @@
       "ACTION": "set"
     },
     {
+      "web": "uaderfcyt@edu.com.ar",
       "id": "UADER-FCyT-IS1",
       "localidad": "Concepción del Uruguay",
       "cp": "3260",

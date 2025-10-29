@@ -5,7 +5,10 @@ from common.net import send_json, recv_json
 UUID_RE = re.compile(r"^[0-9a-f]{12}$")
 
 def run_once(server, port, out_path, uuid_str, log):
-    with socket.create_connection((server, port)) as sock:
+    sock = None
+    try:
+        sock = socket.create_connection((server, port))
+        sock.settimeout(1.0) 
         req = {"UUID": uuid_str, "ACTION": "subscribe"}
         send_json(sock, req)
 
@@ -19,17 +22,41 @@ def run_once(server, port, out_path, uuid_str, log):
         s = json.dumps(first, ensure_ascii=False)
         log.info("Suscripto: %s", s)
 
-        # escuchar notificaciones hasta que el socket se cierre
+        # escuchar notificaciones hasta que el socket se cierre o se interrumpa
         while True:
-            msg = recv_json(sock)
+            try:
+                msg = recv_json(sock)
+            except socket.timeout:
+                # No hay datos → seguimos (permite detectar Ctrl+C)
+                continue
+            except KeyboardInterrupt:
+                # Ctrl+C durante lectura
+                raise
+
             if msg is None:
-                # socket cerrado por el servidor
-                return
+                log.warning("Conexión cerrada por el servidor.")
+                break
+
             line = json.dumps(msg, ensure_ascii=False)
             if out_path:
                 with open(out_path, "a", encoding="utf-8") as f:
                     f.write(line + "\n")
             print(line)
+
+    except KeyboardInterrupt:
+        log.info("Cancelación manual detectada. Cerrando conexión...")
+        raise  # Propaga al main para cierre global
+    except (ConnectionRefusedError, OSError) as e:
+        log.error("Error de conexión: %s", e)
+        time.sleep(3)
+    finally:
+        if sock:
+            try:
+                sock.shutdown(socket.SHUT_RDWR)
+            except Exception:
+                pass
+            sock.close()
+            log.info("Socket cerrado correctamente.")
 
 def main():
     ap = argparse.ArgumentParser()
@@ -55,16 +82,13 @@ def main():
     # Loop de reconexión
     try:
         while True:
-            try:
-                run_once(args.server, args.port, args.output, uuid_str, log)
-                # si run_once retorna, fue cierre remoto → reintentar
-                log.warning("Conexión cerrada. Reintentando en %ss...", args.retry)
-                time.sleep(args.retry)
-            except (ConnectionRefusedError, OSError) as e:
-                log.warning("No conecta (%s). Reintentando en %ss...", e, args.retry)
-                time.sleep(args.retry)
+            run_once(args.server, args.port, args.output, uuid_str, log)
+            log.warning("Conexión finalizada. Reintentando en %ss...", args.retry)
+            time.sleep(args.retry)
     except KeyboardInterrupt:
-        log.info("Interrumpido por el usuario.")
+        log.info("Interrumpido por el usuario. Finalizando ObserverClient...")
+    finally:
+        log.info("Ejecución terminada correctamente.")
 
 if __name__ == "__main__":
     main()
