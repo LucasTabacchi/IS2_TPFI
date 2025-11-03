@@ -5,13 +5,14 @@ try:
 except Exception:  # boto3 opcional
     boto3 = None
 
-# 🔽 Añadido: para normalizar Decimals de DynamoDB
+# Normalizar Decimals de DynamoDB -> tipos nativos
 try:
     from decimal import Decimal
 except Exception:
-    Decimal = None  # fallback por si acaso
+    Decimal = None  # fallback
 
 _MOCK = os.getenv("MOCK_DB") == "1"
+
 
 def _to_native(obj):
     """
@@ -21,7 +22,6 @@ def _to_native(obj):
       - otros tipos -> igual
     """
     if Decimal is not None and isinstance(obj, Decimal):
-        # si es entero (ej. Decimal('5')), devolvemos int; sino float
         return int(obj) if obj % 1 == 0 else float(obj)
     if isinstance(obj, list):
         return [_to_native(x) for x in obj]
@@ -39,6 +39,8 @@ class _Singleton(type):
                 cls._instances[cls] = super().__call__(*args, **kwargs)
         return cls._instances[cls]
 
+
+# ========================= CorporateData =========================
 
 class CorporateData(metaclass=_Singleton):
     def __init__(self):
@@ -64,7 +66,7 @@ class CorporateData(metaclass=_Singleton):
             return None
         resp = self.table.get_item(Key={"id": id_})
         item = resp.get("Item")
-        return _to_native(item) if item is not None else None  # 🔽 normalizamos
+        return _to_native(item) if item is not None else None
 
     def list_all(self) -> List[Dict[str, Any]]:
         if self.backend == "mock":
@@ -79,7 +81,7 @@ class CorporateData(metaclass=_Singleton):
                 scan_kwargs["ExclusiveStartKey"] = resp["LastEvaluatedKey"]
             else:
                 break
-        return _to_native(items)  # 🔽 normalizamos
+        return _to_native(items)
 
     def upsert(self, item: Dict[str, Any]) -> Dict[str, Any]:
         if self.backend == "mock":
@@ -99,18 +101,19 @@ class CorporateData(metaclass=_Singleton):
                 json.dump(data, f, ensure_ascii=False, indent=2)
             return item
 
-        # 🔹 AWS: merge parcial en vez de reemplazo total
+        # AWS: merge parcial
         existing = self.get(item["id"])
         if existing:
             merged = dict(existing)
-            merged.update(item)  # pisa solo lo que mandaste
+            merged.update(item)
             self.table.put_item(Item=merged)
             return merged
         else:
-            # no existía: inserción completa
             self.table.put_item(Item=item)
             return item
 
+
+# ========================= CorporateLog =========================
 
 class CorporateLog(metaclass=_Singleton):
     def __init__(self):
@@ -121,22 +124,98 @@ class CorporateLog(metaclass=_Singleton):
                 with open(self.path, "w", encoding="utf-8") as f:
                     json.dump([], f)
             self.backend = "mock"
+            self._hash_key_cache: Optional[str] = None
         else:
             self.dynamodb = boto3.resource("dynamodb")
-            self.table = self.dynamodb.Table("CorporateLog")
+            table_name = os.getenv("CORPORATELOG_TABLE", "CorporateLog")
+            self.table = self.dynamodb.Table(table_name)
             self.backend = "aws"
+            # cachear el nombre de la hash key (o permitir forzarlo por env)
+            self._hash_key_cache: Optional[str] = os.getenv("CORPORATELOG_HASH_KEY")
+            if not self._hash_key_cache:
+                try:
+                    self.table.load()  # un DescribeTable al arranque
+                    for k in self.table.key_schema:
+                        if k.get("KeyType") == "HASH":
+                            self._hash_key_cache = k.get("AttributeName")
+                            break
+                except Exception:
+                    self._hash_key_cache = None
 
-    def append(self, record: Dict[str, Any]) -> None:
-        record = dict(record)
-        record["ts"] = record.get("ts") or int(time.time() * 1000)
+    def _aws_hash_key_name(self) -> Optional[str]:
+        return self._hash_key_cache
+
+    # ---------- subscribe usa append_exact ----------
+    def append_exact(self, record: Dict[str, Any]) -> None:
+        item = dict(record)
+        # Consigna mínima
+        for k in ("UUID", "session", "action", "ts"):
+            if k not in item:
+                raise ValueError(f"CorporateLog.append_exact: falta '{k}'")
+
         if self.backend == "mock":
+            # En mock: no guardamos 'id' para subscribe
+            item.pop("id", None)
             with open(self.path, "r", encoding="utf-8") as f:
                 data = json.load(f)
-            data.append(record)
+            data.append(item)
             with open(self.path, "w", encoding="utf-8") as f:
                 json.dump(data, f, ensure_ascii=False, indent=2)
             return
-        # Compatibilidad: si la tabla del profe usa PK 'id', la completamos
-        if "id" not in record:
-            record["id"] = str(record["ts"])
-        self.table.put_item(Item=record)
+
+        # AWS: si la tabla exige PK, poner una PK técnica estable para subscribe
+        hash_key = (self._aws_hash_key_name() or "id")
+        item[hash_key] = f"{item['UUID']}#subscribe#{item['session']}"
+        if hash_key != "id":
+            item.pop("id", None)
+        self.table.put_item(Item=item)
+
+    # ---------- get/list/set usan append ----------
+    def append(self, record: Dict[str, Any]) -> None:
+        """
+        - GET  : conserva 'id' (ID solicitado).
+        - SET/LIST/SUBSCRIBE: no registran 'id' de negocio.
+            * mock: no hay 'id'
+            * aws : si la tabla exige PK, se completa con PK técnica (UUID#accion#ts)
+        """
+        item = dict(record)
+        item["ts"] = item.get("ts") or int(time.time() * 1000)
+
+        # limpiar bandera interna
+        item.pop("_no_id", None)
+
+        action = (item.get("action") or "").lower()
+        is_get = (action == "get")
+        is_set = (action == "set")
+        is_list = (action == "list")
+        is_subscribe = (action == "subscribe")
+
+        if self.backend == "mock":
+            # MOCK:
+            # - GET: si vino 'id', se deja; no generamos uno si no vino.
+            # - SET/LIST/SUBSCRIBE: no guardamos 'id'.
+            if not is_get:
+                item.pop("id", None)
+            with open(self.path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            data.append(item)
+            with open(self.path, "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+            return
+
+        # AWS:
+        hash_key = (self._aws_hash_key_name() or "id")
+        if is_get:
+            # GET: PK puede ser el id solicitado; si faltara, usa ts
+            item.setdefault(hash_key, str(item.get("id", item["ts"])))
+        elif is_set or is_list or is_subscribe:
+            # SET/LIST/SUBSCRIBE: PK técnica (no es id de negocio)
+            item.pop(hash_key, None)
+            item[hash_key] = f"{item.get('UUID','unknown')}#{action}#{item['ts']}"
+            if hash_key != "id":
+                item.pop("id", None)
+        else:
+            # Fallback
+            item.setdefault(hash_key, str(item.get("id", item["ts"])))
+
+        self.table.put_item(Item=item)
