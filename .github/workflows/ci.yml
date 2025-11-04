@@ -39,5 +39,5 @@ jobs:
         MOCK_DB: 1
         PYTHONPATH: ${{ github.workspace }}
       run: |
-        pytest tests/ -v
+        python -m pytest tests/ -v
 
