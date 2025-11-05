@@ -3,10 +3,9 @@ Tests de camino feliz para cada acción.
 Verifica que las acciones funcionen correctamente y se registren en CorporateLog.
 """
 import socket
-import pytest
 from tests.conftest import (
-    server_process, send_request, read_corporate_data, read_corporate_log,
-    generate_uuid, MOCK_DB_DIR
+    send_request, read_corporate_data, read_corporate_log,
+    generate_uuid
 )
 
 

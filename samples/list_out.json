@@ -2,6 +2,20 @@
   "OK": true,
   "DATA": [
     {
+      "seqID": "vb",
+      "web": "rtgh",
+      "CUIT": "1223",
+      "localidad": "sdfgh",
+      "provincia": "sdfgb",
+      "sede": "dfg",
+      "idSeq": "asdfg",
+      "idreq": "asd",
+      "telefono": "dfgh",
+      "domicilio": "sded",
+      "id": "pueba1",
+      "cp": "1"
+    },
+    {
       "nombre": "Prueba",
       "id": "TEST-01",
       "descripcion": "Registro de prueba"
@@ -14,19 +28,30 @@
       "ACTION": "set"
     },
     {
+      "idreq": 777,
+      "UUID": "62291085332368",
+      "domicilio": "Avenida Aut 111",
+      "id": "autotest-id-123",
+      "cp": "9999",
+      "ACTION": "set"
+    },
+    {
       "id": "UADER-FCYT-IS2",
-      "telefono": "03442 43-9999",
-      "web": "http://www.fcyt.uader.edu.ar"
+      "telefono": "03442 33-0044",
+      "web": "http://www.fcyt.uader.edu.ar/nuevo"
     },
     {
       "localidad": "",
       "provincia": "",
       "idreq": 1991,
-      "UUID": "71205104768127",
+      "UUID": "260354971609560",
       "domicilio": "",
       "id": "prueba",
-      "cp": "",
+      "cp": "3260",
       "ACTION": "set"
+    },
+    {
+      "id": "test_vin_notif"
     },
     {
       "id": "12741827478",
@@ -34,11 +59,36 @@
       "domicilio": "Victoria"
     },
     {
+      "web": "http://www.uader.edu.ar/",
+      "CUIT": "30-70925411-8",
+      "localidad": "Concepción del Uruguay",
+      "provincia": "Entre Ríos",
+      "sede": "FCyT",
+      "telefono": "03442 43-1442",
+      "domicilio": "suipacha 1007",
+      "id": "JUANJOOOOOOOO",
+      "cp": "3260"
+    },
+    {
       "UUID": "190090210885304",
       "localidad": "Test-Localidad",
       "id": "test-id-1a98b91a-83c7-4120-91d9-022cea69447d",
       "provincia": "Test-Provincia",
       "ACTION": "set"
+    },
+    {
+      "localidad": "Yuki Tsunoda",
+      "provincia": "Tokyo",
+      "idreq": 2000000,
+      "UUID": "71205104768127",
+      "domicilio": "",
+      "id": "22",
+      "cp": "3260",
+      "ACTION": "set"
+    },
+    {
+      "id": "item_get-06b7c0d7-e9f2-4892-bbe5-79a7703da5d8",
+      "valor": 555
     },
     {
       "UUID": "190090210885304",
@@ -49,22 +99,28 @@
     },
     {
       "seqID": "23",
+      "provincia": "Entre Rios",
+      "idSeq": "1146",
+      "idreq": "473",
+      "UUID": "08d1c5f5-7032-4a62-b509-6b427a5800fc",
+      "cp": "3260",
       "web": "http://www.uader.edu.ar",
       "CUIT": "30-70925411-8",
       "localidad": "Concepcion del Uruguay",
-      "provincia": "Entre Rios",
       "sede": "FCyT",
-      "idSeq": "1146",
-      "idreq": "473",
       "telefono": "03442 43-1442",
       "domicilio": "25 de Mayo 385-1P",
-      "id": "UADER-FCyT-IS2-TP-Jota",
-      "cp": "3260"
+      "id": "UADER-FCyT-IS2-TP-Jota"
     },
     {
       "id": "DEMO-ITEM-001",
       "telefono": "011-NUEVO-5678",
       "cp": "5678"
+    },
+    {
+      "id": "id: UADER-TPFI",
+      "telefono": "telefono: 03442 431442",
+      "domicilio": "domicilio: 25 de Mayo 385"
     },
     {
       "seqID": "",
@@ -93,7 +149,7 @@
     },
     {
       "cuit": "30-12345678-9",
-      "note": "El campo UUID se agrega automáticamente por el código si no está presente",
+      "Deporte": "aguante river",
       "localidad": "Concepción del Uruguay",
       "provincia": "Entre Rios",
       "sequence_id": "1001",
@@ -101,13 +157,20 @@
       "ID": "UADER-TEST-01",
       "id": "UADER-TEST-01",
       "phone": "03442 42-0000",
-      "cp": "3260"
+      "cp": "3260",
+      "Email": "fernandorojas201482@gmail.com"
+    },
+    {
+      "idreq": 1,
+      "telefono": "3447-15-12345678",
+      "CUIT": "12345678",
+      "id": "208420896477203"
     },
     {
       "localidad": "",
       "provincia": "",
       "idreq": 1991,
-      "UUID": "17940208253109",
+      "UUID": "260354971609560",
       "domicilio": "",
       "id": "test-final",
       "cp": "3260",
@@ -143,8 +206,8 @@
       "localidad": "Concepcion del Uruguay",
       "provincia": "Entre Rios",
       "sede": "FCyT-Central",
-      "idreq": 9999,
-      "UUID": "190090210885304",
+      "idreq": 99999,
+      "UUID": "9413551330669",
       "domicilio": "Calle Falsa 123 - MODIFICADO",
       "id": "Prueba2",
       "cp": "3260",
@@ -161,6 +224,21 @@
       "id": "prueba01",
       "cp": "",
       "ACTION": "set"
+    },
+    {
+      "seqID": "23",
+      "provincia": "Entre Rios",
+      "idSeq": "1146",
+      "idreq": "473",
+      "UUID": "dc718852-5b84-47e8-92e8-6d4740795bb3",
+      "cp": "3260",
+      "web": "http://www.uader.edu.ar",
+      "CUIT": "30-70925411-8",
+      "localidad": "Concepcion del Uruguay",
+      "sede": "FCyT",
+      "telefono": "03442 43-1442",
+      "domicilio": "25 de Mayo 385-1P",
+      "id": "UADER-FCyT-IS2-TP-Pepito"
     },
     {
       "seqID": "",
@@ -182,6 +260,29 @@
       "id": "UADER-FCyT-IS2-PRUEBA"
     },
     {
+      "web": "http://www.uader.edu.ar/",
+      "CUIT": "30-70925411-8",
+      "localidad": "Concepción del Uruguay",
+      "provincia": "Entre Ríos",
+      "sede": "FCyT",
+      "telefono": "03442 43-1442",
+      "domicilio": "suipacha 1007",
+      "id": "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH",
+      "cp": "3260"
+    },
+    {
+      "CUIT": "30-70925411-8",
+      "localidad": "Concepcion del Uruguay",
+      "provincia": "Entre Rios",
+      "sede": "FCyT-Central",
+      "idreq": 99999,
+      "UUID": "66504331602159",
+      "domicilio": "Calle Falsa 123 - MODIFICADO",
+      "id": "MateosPrueba2",
+      "cp": "3260",
+      "ACTION": "set"
+    },
+    {
       "id": "elmate",
       "telefono": "323131412231",
       "domicilio": "9dejulio 89"
@@ -199,10 +300,23 @@
       "ACTION": "set"
     },
     {
+      "cuit": "22-4059239123-5",
+      "localidad": "San Juan 1111",
+      "provincia": "Entre Rios",
+      "idreq": 474,
+      "telefono": "03442 43-5023",
+      "domicilio": "san tucuman",
+      "id": "UADER-FCyT-IS2-V50"
+    },
+    {
       "test_value": "Esto es una prueba",
       "id": "TEST-c6e164c7",
       "number": 42,
       "timestamp": "2025-10-26T16:20:31.691514"
+    },
+    {
+      "id": "item_get-83a208dd-e188-4518-b937-6f827bbaba63",
+      "valor": 555
     },
     {
       "telefono": "03442 43-5023",
@@ -245,10 +359,33 @@
       "cp": ""
     },
     {
+      "CUIT": "30-70925411-8",
+      "localidad": "Concepcion del Uruguay",
+      "provincia": "Entre Rios",
+      "sede": "FCyT-Central",
+      "idreq": 99999,
+      "UUID": "9413551330669",
+      "domicilio": "Calle Falsa 123 - MODIFICADO",
+      "id": "MateoPrueba",
+      "cp": "3260",
+      "ACTION": "set"
+    },
+    {
       "test_value": "Valor actualizado",
       "id": "TEST-0059275b",
       "number": 42,
       "timestamp": "2025-10-26T16:21:36.341800"
+    },
+    {
+      "web": "http://www.uader.edu.ar/",
+      "CUIT": "30-70925411-8",
+      "localidad": "URUGUAY CONCEPCION",
+      "provincia": "Entre Ríos",
+      "sede": "FCyT",
+      "telefono": "03442-421600",
+      "domicilio": "CALLE DE PRUEBA",
+      "id": "Frachia",
+      "cp": "3260"
     },
     {
       "id": "elbarto",
@@ -260,7 +397,35 @@
       "name": "UADER"
     },
     {
+      "cuit": "22-4059239123-5",
+      "localidad": "San Juan 1111",
+      "provincia": "Entre Rios",
+      "idreq": 474,
+      "telefono": "03442 43-5023",
+      "domicilio": "san tucuman",
+      "id": "UADER-FCyT-IS2-V49"
+    },
+    {
+      "cuit": "22-4059239123-5",
+      "localidad": "San Juan 1111",
+      "provincia": "Entre Rios",
+      "idreq": 474,
+      "telefono": "03442 43-5023",
+      "domicilio": "san tucuman",
+      "id": "UADER-FCyT-IS2-V40"
+    },
+    {
       "id": "test-notify-1761750335"
+    },
+    {
+      "localidad": "",
+      "provincia": "",
+      "idreq": 12,
+      "UUID": "62291085332368",
+      "domicilio": "",
+      "id": "prueba000",
+      "cp": "3260",
+      "ACTION": "set"
     },
     {
       "telefono": "011-1234-5678",
@@ -272,6 +437,23 @@
       "id": "test_test2",
       "telefono": "03442 43-9999",
       "web": "http://www.fcyt.uader.edu.ar/"
+    },
+    {
+      "id": "item-49c0a788-e451-428e-bfee-37d4c2d396f8",
+      "valor": "123"
+    },
+    {
+      "id": "item-b95399ab-6fc4-430b-86cf-0c4023b3990d",
+      "valor": "123"
+    },
+    {
+      "CUIT": "12345678",
+      "localidad": "Concepcion del Uruguay",
+      "provincia": "Entre Rios",
+      "telefono": "3447-15-12345678",
+      "domicilio": "John Doe Fernandez 12345678",
+      "id": "2084208964772039",
+      "cp": "3260"
     },
     {
       "seqID": "",
@@ -309,6 +491,17 @@
     {
       "web": "http://www.uader.edu.ar/",
       "CUIT": "30-70925411-8",
+      "localidad": "CONCEPCION CITYY",
+      "provincia": "Entre Ríos",
+      "sede": "FCyT",
+      "telefono": "03442-421600",
+      "domicilio": "CALLE DE PRUEBA",
+      "id": "PruebaAAAAAAAAAAAAAAAAAAAAAAAA",
+      "cp": "3260"
+    },
+    {
+      "web": "http://www.uader.edu.ar/",
+      "CUIT": "30-70925411-8",
       "localidad": "Concepción del Uruguay",
       "provincia": "Entre Ríos",
       "sede": "FCyT",
@@ -316,6 +509,10 @@
       "domicilio": "25 de Mayo 385-1P",
       "id": "JUAAAAAAAAAAAAAAAAAAAN-CICLON",
       "cp": "3260"
+    },
+    {
+      "id": "item-fb36e5bc-23f6-423b-b367-0c8c5020b3d8",
+      "valor": "123"
     },
     {
       "UUID": "190090210885304",
@@ -370,6 +567,16 @@
       "id": "test-notify-1761751465"
     },
     {
+      "localidad": "Santino",
+      "provincia": "Rosario",
+      "idreq": 2000000,
+      "UUID": "71205104768127",
+      "domicilio": "",
+      "id": "777",
+      "cp": "3260",
+      "ACTION": "set"
+    },
+    {
       "telefono": "03442-43-5023",
       "idreq": 474,
       "domicilio": "Av. Miguel Britto 1200",
@@ -378,7 +585,7 @@
       "provincia": "Entre Ríos"
     },
     {
-      "web": "uaderfcytcdu@gmail.com.ar",
+      "web": "uaderfcytcdu@gmail.com.ar_",
       "id": "UADER-FCyT-IS1",
       "localidad": "Concepción del Uruguay",
       "cp": "3260",
@@ -386,14 +593,24 @@
       "direccion": "25 de Mayo 385"
     },
     {
-      "web": "http://www.uader.edu.ar",
+      "web": "https://prueba.edu.ar",
+      "CUIT": "30-99998888-9",
+      "localidad": "Concepción del Uruguay",
+      "provincia": "Entre Ríos",
+      "telefono": "03442-42-1101",
+      "domicilio": "25 de Mayo 400",
+      "id": "ZzZzzZzZzZzZ",
+      "cp": "3260"
+    },
+    {
+      "web": "https://fcyt.uader.edu.ar",
       "CUIT": "30-70925411-8",
       "localidad": "Concepción del Uruguay",
-      "provincia": "Entre Rios",
+      "provincia": "Entre Ríos",
       "telefono": "03442 43-1442",
-      "domicilio": "25 de Mayo 385-1P",
+      "domicilio": "25 de Mayo 385",
       "id": "UADER-FCyT-IS2",
-      "cp": "3261"
+      "cp": "3265"
     },
     {
       "id": "fiuma",
@@ -514,6 +731,20 @@
       "valor": "test"
     },
     {
+      "seqID": "23",
+      "web": "http://www.uader.edu.ar",
+      "CUIT": "30-70925411-8",
+      "localidad": "Concepción del Uruguay",
+      "provincia": "Entre Ríos",
+      "sede": "FCyT",
+      "idSeq": "1146",
+      "idreq": "473",
+      "telefono": "03442 43-1442",
+      "domicilio": "25 de Mayo 385-1P",
+      "id": "UADER-FCyT-IS2-TEST",
+      "cp": "3260"
+    },
+    {
       "test_value": "Valor actualizado",
       "id": "TEST-93d61296",
       "number": 42,
@@ -557,12 +788,20 @@
       "cp": ""
     },
     {
+      "id": "test_vin_1",
+      "telefono": "1234"
+    },
+    {
       "telefono": "03442 43-5023",
       "idreq": 474,
       "domicilio": "Av.Miguel Britto 900",
       "localidad": "Herrera",
       "id": "UADER-FCyT-IS2-V5",
       "provincia": "Entre Rios"
+    },
+    {
+      "id": "item1",
+      "valor": "123"
     },
     {
       "web": "http://www.uader.edu.ar",
@@ -587,14 +826,24 @@
       "web": "http://www.fcyt.uader.edu.ar/"
     },
     {
-      "CUIT": "20-00000000-5",
-      "localidad": "Australia",
-      "provincia": "Cancun",
-      "sede": "FCyT-Central",
-      "idreq": 1201,
-      "UUID": "71205104768127",
-      "domicilio": "9 de Julio 123",
+      "localidad": "",
+      "provincia": "",
+      "idreq": 100000,
+      "UUID": "260354971609560",
+      "domicilio": "",
       "id": "tigre",
+      "cp": "3260",
+      "ACTION": "set"
+    },
+    {
+      "CUIT": "30-70925411-8",
+      "localidad": "Concepcion del Uruguay",
+      "provincia": "Entre Rios",
+      "sede": "FCyT-Central",
+      "idreq": 9999,
+      "UUID": "345052807176",
+      "domicilio": "Calle Falsa 12345",
+      "id": "Pruebafinal",
       "cp": "3260",
       "ACTION": "set"
     },
@@ -632,6 +881,17 @@
       "cp": "3101"
     },
     {
+      "web": "http://www.uader.edu.ar/",
+      "CUIT": "30-70925411-8",
+      "localidad": "Concepción del Uruguay",
+      "provincia": "Entre Ríos",
+      "sede": "FCyT",
+      "telefono": "03442 43-1442",
+      "domicilio": "25 de Mayo 385-1P",
+      "id": "BOCAAAAAAAAAAAAA",
+      "cp": "3260"
+    },
+    {
       "id": "observer-test-item",
       "cp": "5678"
     },
@@ -651,10 +911,11 @@
       "provincia": "Entre Rios"
     },
     {
-      "CUIT": "20-7-5",
-      "idreq": 1201,
-      "UUID": "71205104768127",
-      "domicilio": "Alpine",
+      "localidad": "",
+      "provincia": "",
+      "idreq": 100000,
+      "UUID": "62291085332368",
+      "domicilio": "",
       "id": "FC-43",
       "cp": "3260",
       "ACTION": "set"
@@ -717,6 +978,10 @@
       "provincia": "Entre Rios"
     },
     {
+      "id": "item_get-9a5775b9-7676-418c-8fa8-c504587559e2",
+      "valor": 555
+    },
+    {
       "seqID": "",
       "web": "",
       "CUIT": "",
@@ -731,6 +996,17 @@
       "cp": ""
     },
     {
+      "web": "ahora si",
+      "CUIT": "30-70925411-8",
+      "localidad": "Concepción del Uruguay",
+      "provincia": "Entre Ríos",
+      "sede": "FCyT",
+      "telefono": "03442 43-1442",
+      "domicilio": "25 de Mayo 385-1P",
+      "id": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "cp": "3260"
+    },
+    {
       "CUIT": "",
       "localidad": "",
       "provincia": "",
@@ -741,6 +1017,16 @@
       "id": "12345678",
       "cp": "",
       "ACTION": "set"
+    },
+    {
+      "web": "https://prueba.edu.ar",
+      "CUIT": "30-99998888-9",
+      "localidad": "Concepción del Uruguay",
+      "provincia": "Entre Ríos",
+      "telefono": "03442-42-1101",
+      "domicilio": "25 de Mayo 400",
+      "id": "FCYT-TEST-AWS",
+      "cp": "3260"
     },
     {
       "seqID": "23",
@@ -762,6 +1048,13 @@
       "domicilio": "8 de junio 19191919"
     },
     {
+      "id": "test-id-1",
+      "name": "Empresa Test",
+      "metadata": {
+        "cores": 2
+      }
+    },
+    {
       "id": "UADER-FCYT-IS2-PARODI-TEST",
       "telefono": "03442 43-9999",
       "web": "http://www.fcyt.uader.edu.ar"
@@ -774,9 +1067,91 @@
       "data": "Dato de prueba de integracion"
     },
     {
+      "CUIT": "30-99998888-9",
+      "localidad": "Concepción del Uruguay",
+      "provincia": "Entre Ríos",
+      "telefono": "03442-42-1101",
+      "domicilio": "San Martín 123",
+      "id": "EMPRESA-TEST-001",
+      "cp": "3260"
+    },
+    {
+      "id": "Acción (get/set/list): set",
+      "telefono": "domicilio: UADER",
+      "domicilio": "id: test1"
+    },
+    {
+      "seqID": "23",
+      "web": "http://www.uader.edu.ar",
+      "CUIT": "30-00000000-8",
+      "localidad": "Concepciencao del Uruguay",
+      "provincia": "Entre Rios",
+      "sede": "FCyT",
+      "idSeq": "1146",
+      "idreq": "473",
+      "telefono": "03442-431442",
+      "domicilio": "25 de Mayo 385-1P",
+      "id": "La prueba definitiva02",
+      "cp": "3260"
+    },
+    {
+      "seqID": "",
+      "web": "",
+      "CUIT": "",
+      "localidad": "",
+      "provincia": "",
+      "sede": "",
+      "idSeq": "",
+      "idreq": "",
+      "telefono": "",
+      "domicilio": "",
+      "id": "prueba1",
+      "cp": "hola"
+    },
+    {
+      "localidad": "Gasly",
+      "provincia": "Francia",
+      "idreq": 2000000,
+      "UUID": "71205104768127",
+      "domicilio": "",
+      "id": "14",
+      "cp": "3260",
+      "ACTION": "set"
+    },
+    {
+      "id": "test1",
+      "telefono": "1234",
+      "domicilio": "arroyo baru"
+    },
+    {
       "id": "OTRA-FACULTAD",
       "nombre": "Facultad de Ciencias EconÃ³micas",
       "web": "http://www.fceco.uner.edu.ar/"
+    },
+    {
+      "seqID": "23",
+      "web": "http://www.uader.edu.ar",
+      "CUIT": "30-00000000-8",
+      "localidad": "Concepciencao del Uruguay",
+      "provincia": "Entre Rios",
+      "sede": "FCyT",
+      "idSeq": "1146",
+      "idreq": "473",
+      "telefono": "03442-431442",
+      "domicilio": "25 de Mayo 385-1P",
+      "id": "testeando limites",
+      "cp": "3260"
+    },
+    {
+      "web": "ahora si",
+      "CUIT": "30-70925411-8",
+      "localidad": "Concepción del Uruguay",
+      "provincia": "Entre Ríos",
+      "sede": "FCyT",
+      "telefono": "03442 43-1442",
+      "domicilio": "25 de Mayo 385-1P",
+      "id": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "cp": "3260"
     },
     {
       "seqID": "23",

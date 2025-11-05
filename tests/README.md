@@ -114,10 +114,64 @@ Todos los tests verifican el impacto correcto en las tablas:
   - Timestamp (ts)
   - ID (para GET, cuando corresponde)
 
+## Ver Datos Generados por los Tests
+
+Los tests limpian los archivos JSON antes y después de cada ejecución, por lo que normalmente están vacíos. Para ver los datos generados:
+
+### Opción 1: Script de Visualización (Recomendado)
+
+Ejecuta el script en otra terminal mientras los tests se ejecutan:
+
+```bash
+# Ver datos actuales
+python tests/view_test_data.py
+
+# Modo watch (actualiza automáticamente cada segundo)
+python tests/view_test_data.py --watch
+```
+
+### Opción 2: Desactivar Limpieza Temporalmente
+
+Si quieres que los datos persistan después de los tests, puedes comentar temporalmente la limpieza en `conftest.py`:
+
+```python
+@pytest.fixture(scope="function")
+def clean_mock_db():
+    """Fixture que limpia la BD antes y después de cada test."""
+    cleanup_mock_db()
+    yield
+    # cleanup_mock_db()  # Comentar esta línea para no limpiar después
+```
+
+**Nota:** Recuerda descomentar la línea después de ver los datos para que los tests funcionen correctamente.
+
+### Opción 3: Ver Durante la Ejecución
+
+Los archivos se llenan durante la ejecución de cada test. Puedes:
+
+1. Ejecutar un test específico y rápido
+2. Mientras se ejecuta, en otra terminal ejecutar: `python tests/view_test_data.py`
+3. O usar el modo watch: `python tests/view_test_data.py --watch`
+
+### Opción 4: Agregar Print en los Tests
+
+Puedes agregar temporalmente un print al final de un test para ver los datos:
+
+```python
+def test_set_action_happy_path(self, server_process):
+    # ... código del test ...
+    
+    # Al final, ver los datos
+    data = read_corporate_data()
+    log = read_corporate_log()
+    print(f"\nCorporateData: {json.dumps(data, indent=2)}")
+    print(f"\nCorporateLog: {json.dumps(log, indent=2)}")
+```
+
 ## Notas
 
 - Los tests usan `MOCK_DB=1` para usar archivos JSON locales en lugar de AWS DynamoDB
-- Cada test limpia la BD antes y después de ejecutarse
+- Cada test limpia la BD antes y después de ejecutarse (por defecto)
 - Los tests usan puertos dinámicos para evitar conflictos
 - El servidor se inicia y detiene automáticamente para cada test
 

@@ -35,7 +35,7 @@ def clean_mock_db():
     """Fixture que limpia la BD antes y después de cada test."""
     cleanup_mock_db()
     yield
-    cleanup_mock_db()
+    # cleanup_mock_db()  # Comentado para poder ver los datos después de los tests
 
 
 @pytest.fixture(scope="function")
